@@ -29,41 +29,39 @@ int main()
     std::string enterr;
     int cnt1;
     char entt;
+    Counter* c = nullptr;
     std::cout << "Вы хотите указать начальное значение счётчика? Введите да или нет: ";
     std::cin >> enterr;
     if (enterr == "да")
     {
         std::cout << "Введите начальное значение счётчика: ";
         std::cin >> cnt1;
+        c = new Counter(cnt1);
     }
-    else
-    {
-        std::cout << "До свидания!";
-        exit(0);
+    else{
+        c = new Counter(cnt1);
     }
-    Counter counter(cnt1);
-    while (true)
-    {
+    do{
         std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
-        std::cin >> entt;
+        std::cin >> entt;   
         if (entt == '+')
         {
-            counter.increm();
+            c->increm();
         }
         else if (entt == '-')
         {
-            counter.decrem();
+            c->decrem();
         }
         else if (entt == '=')
         {
-            counter.outt();
+            c->outt();
         }
         else
         {
             std::cout << "До свидания!" << std::endl;
             break;
         }
-    }
-
+    }while(entt!='x');
+    delete c;
     return EXIT_SUCCESS;
 }
